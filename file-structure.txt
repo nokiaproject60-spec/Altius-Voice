@@ -1,0 +1,20 @@
+├── .filetreeignore
+├── App.tsx
+├── components
+  ├── ChatInterface.tsx
+  ├── FileUpload.tsx
+  └── PdfViewer.tsx
+├── index.html
+├── index.tsx
+├── manifest.json
+├── metadata.json
+├── package-lock.json
+├── package.json
+├── README.md
+├── service-worker.js
+├── services
+  ├── geminiService.ts
+  └── pdfService.ts
+├── tsconfig.json
+├── types.ts
+└── vite.config.ts
