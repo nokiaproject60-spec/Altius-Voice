@@ -98,7 +98,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, isProcessing }) =
         </div>
       )}
 
-      {/* Feature hints */}
+      {/* Feature hints- ok */}
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
             <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-3">
