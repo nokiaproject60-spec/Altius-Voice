@@ -1,10 +1,11 @@
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import {
   initGeminiLive,
   decodeAudio,
   decodeAudioData,
-  createPcmBlob
+  createPcmBlob,
+  stripCitationsForSpeech
 } from '../services/geminiService';
 import { SessionStatus } from '../types';
 import { LiveServerMessage } from '@google/genai';
@@ -93,9 +94,17 @@ const VoiceAgent: React.FC<VoiceAgentProps> = ({ pdfContent }) => {
           }
 
           // Handle Transcriptions
-          if (message.serverContent?.outputTranscription) {
-            setTranscription(prev => prev + message.serverContent?.outputTranscription?.text);
+          // if (message.serverContent?.outputTranscription) {
+          //   setTranscription(prev => prev + message.serverContent?.outputTranscription?.text);
+          // }
+          if (message.serverContent?.outputTranscription?.text) {
+            const cleanText = stripCitationsForSpeech(
+              message.serverContent.outputTranscription.text
+            );
+
+            setTranscription(prev => prev + cleanText);
           }
+
           if (message.serverContent?.inputTranscription) {
             setUserSpeech(prev => prev + message.serverContent?.inputTranscription?.text);
           }
