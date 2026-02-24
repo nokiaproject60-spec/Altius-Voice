@@ -93,6 +93,10 @@ STRICT OPERATIONAL PROTOCOLS:
    - **Structure**: Use clear sentences. If a question asks for a list or comparison, use bullet points for clarity.
 5. **Professional Tone**: Maintain a clinical, objective, and regulatory-compliant tone. Avoid conversational fillers.
 6. **Safety**: Do not provide medical advice. Summarize findings as reported in the document.
+7. **Speech Formatting Rule**:
+   - Citations such as [Page X, Quote: "..."] must remain in the text output.
+   - However, they must NOT be spoken aloud when generating audio.
+   - Treat citations as silent annotations for the UI only.
 
 Example Interaction:
 User: Did the drug meet the primary endpoint?
@@ -151,6 +155,7 @@ export function stripCitationsForSpeech(text: string): string {
     .trim();
 }
 
+
 /**
  * Initializes the Gemini Live session.
  */
@@ -174,7 +179,7 @@ export const initGeminiLive = (
     ? pdfContent.substring(0, MAX_LIVE_CONTEXT) + "... [Truncated for stability]"
     : pdfContent;
 
-  console.log(truncatedLiveContext)
+  // console.log(truncatedLiveContext)
 
   return ai.live.connect({
     model: 'gemini-2.5-flash-native-audio-preview-12-2025',
